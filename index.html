@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Auraaq</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+  <!-- Font Awesome CDN for social icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar main-container">
+  <!-- Left Navigation Links -->
+  <div class="nav-left">
+    <a href="#bookstore">Bookstore</a>
+    <a href="#about">About Us</a>
+  </div>
+
+  <!-- Logo in Center -->
+  <div class="logo">
+    <img src="newlogo.png" alt="Auraaq Logo" class="logo-img" />
+  </div>
+
+  <!-- Right Navigation Links -->
+  <div class="nav-right">
+    <a href="#bookclub">Book Club</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- Rightmost Auth Container -->
+  <div class="auth-container">
+    <div class="login-icon" onclick="toggleLogin()">👤</div>
+
+    <!-- Hidden Login Dropdown -->
+    <div class="login-dropdown" id="loginDropdown">
+      <button class="close-btn" onclick="toggleLogin()">×</button>
+      <h3>Login</h3>
+      <div class="form-group">
+        <label>Email:</label>
+        <input type="email" placeholder="Enter your email">
+      </div>
+      <div class="form-group">
+        <label>Password:</label>
+        <input type="password" id="dropdownPassword" placeholder="Enter your password">
+        <div id="dropdownPasswordError" class="password-error"></div>
+      </div>
+      <button class="login-btn-submit" onclick="validateLogin()">Login</button>
+      <div class="signup-link">
+        Don't have an account? <a href="signup.html">Sign up</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<!-- Auth Modal -->
+<div id="authModal">
+  <div class="auth-box">
+    <button class="close-btn" onclick="closeAuthModal()">×</button>
+    
+    <!-- Login Form Only -->
+    <div id="loginForm">
+      <h3>Welcome Back</h3>
+      <p>Please sign in to your account</p>
+      <input type="email" id="modalEmail" placeholder="Email" required>
+      <input type="password" id="modalPassword" placeholder="Password" required>
+      <div id="modalPasswordError" class="password-error"></div>
+      <button type="submit" onclick="validateModalLogin()">Sign In</button>
+    </div>
+  </div>
+</div>
+
+<!-- Home Section -->
+<section id="home" style="background-color: #ffffff; min-height: 100vh; width: 100%;">
+  <div class="home-content main-container">
+    <div class="home-text">
+      <h1>
+        From <span class="dynamic-tagline">Ideas to Reality</span>, Auraaq it.
+      </h1>
+      <p>We connect vendors and businesses through innovative solutions, simplifying commerce for everyone.</p>
+      <a href="#bookstore" class="btn">Explore Our Books</a>
+    </div>
+    
+    <div class="home-image">
+      <img src="books.png" alt="Home Side Image">
+    </div>
+  </div>
+</section>
+
+<!-- Bookstore Section -->
+<section id="bookstore" style="background-color: #f9f9f9; padding: 60px 0; width: 100%;">
+  <div class="main-container">
+    <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 30px;">Our Bookstore</h2>
+    <div class="books-grid">
+      <div class="book-card" onclick="openView('Jannat kay Pattay', 'jannat_kai_pattay2.png', 'Rs 1200', 'نمرہ احمد', 'ایک دلچسپ کہانی جو محبت، دوستی اور زندگی کے مختلف پہلوؤں کو بیان کرتی ہے۔')">
+        <img src="https://zanjabeelbookstore.com/cdn/shop/files/WhatsAppImage2025-04-16at19.36.34_720x.jpg?v=1744874103" alt="Jannat Ke Pattay">
+        <h3>Jannat Ke Pattay</h3>
+        <p>Rs 1500</p>
+      </div>
+
+      <div class="book-card" onclick="openView('Namal', 'nummal.png', 'Rs 2800', 'نمرہ احمد', 'ایک اور دلچسپ ناول جو قارئین کو مسحور کر دیتا ہے۔')">
+        <img src="https://zanjabeelbookstore.com/cdn/shop/files/KHA03269_720x.jpg?v=1715750925" alt="نمل">
+        <h3>Namal</h3>
+        <p>Rs 2800</p>
+      </div>
+
+      <div class="book-card" onclick="openView('Tabeer Planner', 'tabeer.png', 'Rs 1900', 'نامعلوم', 'خوبصورت ڈیزائن کے ساتھ ایک مکمل پلینر۔')">
+        <img src="https://soz.com.pk/cdn/shop/products/Tabeer_4_590x.jpg?v=1672504927" alt="تعبیر پلینر">
+        <h3>Tabeer Planner</h3>
+        <p>Rs 1900</p>
+      </div>
+
+      <div class="book-card" onclick="openView('Musawir Journal', 'musawir.png', 'Rs 1100', 'نامعلوم', 'تخلیقی لکھنے کے لیے ایک بہترین جرنل۔')">
+        <img src="https://soz.com.pk/cdn/shop/products/Musawar_-A5Blank-HardbackBulletJournal_590x.jpg?v=1662389554" alt="مصّور جرنل">
+        <h3>Musawir Journal</h3>
+        <p>Rs 1100</p>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="#" class="shop-btn">Shop Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" style="width: 100%; padding: 60px 0; background: #f2ece3;">
+  <div class="main-container">
+    <div class="book">
+      <div class="pages">
+        <div class="page" style="background-image: url('bookcover.png'); background-size: cover; background-position: center;"></div>
+        <div class="page"></div>
+        <div class="page"></div>
+        <div class="page"></div>
+        <div class="page"></div>
+        <div class="page"></div>
+        <div class="page"></div>
+        <div class="page"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Book Club Section -->
+<section id="bookclub">
+  <div class="main-container">
+    <h2>Join Our Monthly Book Club</h2>
+    <p>Register now and become part of engaging discussions and exclusive content.</p>
+    <a href="https://your-form-link.com" class="shop-btn">Register Here</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="custom-footer">
+  <div class="footer-container">
+    <div class="footer-logo">
+      <img src="newlogo.png" alt="Auraaq Logo" />
+    </div>
+    <div class="footer-links">
+      <div class="footer-column">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">Auraaq Industrial</a></li>
+          <li><a href="#">Auraaq Pro</a></li>
+          <li><a href="#">Newsroom</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Social Media</h4>
+        <ul class="social-icons">
+          <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+          <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+          <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+          <li><a href="#"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
+        </ul>
+      </div>
+      <div class="footer-column store-buttons">
+        <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" /></a>
+        <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Shopify_logo_2018.svg" alt="Shop Online" /></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Auraaq Technologies. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+// Password validation function
+function validatePassword(password) {
+  const minLength = 8;
+  const hasUppercase = /[A-Z]/.test(password);
+  const hasLowercase = /[a-z]/.test(password);
+  const hasNumbers = /\d/.test(password);
+  const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+  
+  const errors = [];
+  
+  if (password.length < minLength) {
+    errors.push(`At least ${minLength} characters`);
+  }
+  if (!hasUppercase) {
+    errors.push('At least one uppercase letter');
+  }
+  if (!hasLowercase) {
+    errors.push('At least one lowercase letter');
+  }
+  if (!hasNumbers) {
+    errors.push('At least one number');
+  }
+  if (!hasSpecialChar) {
+    errors.push('At least one special character (!@#$%^&*(),.?":{}|<>)');
+  }
+  
+  return {
+    isValid: errors.length === 0,
+    errors: errors
+  };
+}
+
+// Show password error
+function showPasswordError(elementId, errors) {
+  const errorElement = document.getElementById(elementId);
+  if (errors.length > 0) {
+    errorElement.innerHTML = `
+      <div style="color: #e74c3c; font-size: 12px; margin-top: 5px;">
+        <strong>Password must include:</strong><br>
+        ${errors.map(error => `• ${error}`).join('<br>')}
+      </div>
+    `;
+    errorElement.style.display = 'block';
+  } else {
+    errorElement.style.display = 'none';
+  }
+}
+
+// Validate dropdown login
+function validateLogin() {
+  const email = document.querySelector('#loginDropdown input[type="email"]').value;
+  const password = document.getElementById('dropdownPassword').value;
+  
+  if (!email) {
+    alert('Please enter your email');
+    return;
+  }
+  
+  if (!password) {
+    alert('Please enter your password');
+    return;
+  }
+  
+  const passwordValidation = validatePassword(password);
+  
+  if (!passwordValidation.isValid) {
+    showPasswordError('dropdownPasswordError', passwordValidation.errors);
+    return;
+  }
+  
+  // Clear any previous errors
+  showPasswordError('dropdownPasswordError', []);
+  
+  // Proceed with login (you can add your login logic here)
+  alert('Login successful!');
+  toggleLogin(); // Close dropdown
+}
+
+// Validate modal login
+function validateModalLogin() {
+  const email = document.getElementById('modalEmail').value;
+  const password = document.getElementById('modalPassword').value;
+  
+  if (!email) {
+    alert('Please enter your email');
+    return;
+  }
+  
+  if (!password) {
+    alert('Please enter your password');
+    return;
+  }
+  
+  const passwordValidation = validatePassword(password);
+  
+  if (!passwordValidation.isValid) {
+    showPasswordError('modalPasswordError', passwordValidation.errors);
+    return;
+  }
+  
+  // Clear any previous errors
+  showPasswordError('modalPasswordError', []);
+  
+  // Proceed with login (you can add your login logic here)
+  alert('Login successful!');
+  closeAuthModal(); // Close modal
+}
+
+// Real-time password validation for dropdown
+document.addEventListener('DOMContentLoaded', function() {
+  const dropdownPassword = document.getElementById('dropdownPassword');
+  if (dropdownPassword) {
+    dropdownPassword.addEventListener('input', function() {
+      const password = this.value;
+      if (password.length > 0) {
+        const validation = validatePassword(password);
+        showPasswordError('dropdownPasswordError', validation.errors);
+      } else {
+        showPasswordError('dropdownPasswordError', []);
+      }
+    });
+  }
+  
+  const modalPassword = document.getElementById('modalPassword');
+  if (modalPassword) {
+    modalPassword.addEventListener('input', function() {
+      const password = this.value;
+      if (password.length > 0) {
+        const validation = validatePassword(password);
+        showPasswordError('modalPasswordError', validation.errors);
+      } else {
+        showPasswordError('modalPasswordError', []);
+      }
+    });
+  }
+});
+
+// Toggle login dropdown
+function toggleLogin() {
+  const dropdown = document.getElementById('loginDropdown');
+  dropdown.classList.toggle('show');
+}
+
+// Close auth modal
+function closeAuthModal() {
+  const modal = document.getElementById('authModal');
+  modal.classList.remove('show');
+}
+
+// Book view function (placeholder)
+function openView(title, image, price, author, description) {
+  alert(`Book: ${title}\nPrice: ${price}\nAuthor: ${author}\nDescription: ${description}`);
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(event) {
+  const dropdown = document.getElementById('loginDropdown');
+  const loginIcon = document.querySelector('.login-icon');
+  
+  if (!dropdown.contains(event.target) && !loginIcon.contains(event.target)) {
+    dropdown.classList.remove('show');
+  }
+});
+
+// Close modal when clicking outside
+document.addEventListener('click', function(event) {
+  const modal = document.getElementById('authModal');
+  const authBox = document.querySelector('.auth-box');
+  
+  if (modal.classList.contains('show') && !authBox.contains(event.target)) {
+    closeAuthModal();
+  }
+});
+
+// Flipbook functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const pages = document.querySelectorAll('.page');
+  
+  pages.forEach((page, index) => {
+    page.addEventListener('click', function() {
+      if (index % 2 === 0) { // Only odd pages (right side) are clickable
+        page.classList.add('flipped');
+        if (pages[index + 1]) {
+          pages[index + 1].classList.add('flipped');
+        }
+      }
+    });
+  });
+});
+
+// Dynamic tagline animation (optional)
+const taglines = ['Ideas to Reality', 'Concept to Creation', 'Vision to Victory', 'Dream to Delivery'];
+let currentTagline = 0;
+
+function rotateTagline() {
+  const taglineElement = document.querySelector('.dynamic-tagline');
+  if (taglineElement) {
+    taglineElement.textContent = taglines[currentTagline];
+    currentTagline = (currentTagline + 1) % taglines.length;
+  }
+}
+
+// Rotate tagline every 3 seconds
+setInterval(rotateTagline, 3000);
+</script>
+
+</body>
+</html>
