@@ -2,94 +2,96 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Auraaq</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
-  <!-- Font Awesome CDN for social icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-
-<!-- Navbar -->
-<nav class="navbar main-container">
-  <!-- Left Navigation Links -->
-  <div class="nav-left">
-    <a href="#bookstore">Bookstore</a>
-    <a href="#about">About Us</a>
-  </div>
-
-  <!-- Logo in Center -->
-  <div class="logo">
-    <img src="newlogo.png" alt="Auraaq Logo" class="logo-img" />
-  </div>
-
-  <!-- Right Navigation Links -->
-  <div class="nav-right">
-    <a href="#bookclub">Book Club</a>
-    <a href="#contact">Contact</a>
-  </div>
-
-  <!-- Rightmost Auth Container -->
-  <div class="auth-container">
-    <div class="login-icon" onclick="toggleLogin()">👤</div>
-
-    <!-- Hidden Login Dropdown -->
-    <div class="login-dropdown" id="loginDropdown">
-      <button class="close-btn" onclick="toggleLogin()">×</button>
-      <h3>Login</h3>
-      <div class="form-group">
-        <label>Email:</label>
-        <input type="email" placeholder="Enter your email">
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="#bookstore" class="btn">Bookstore</a>
+      <a href="#about" class="btn">About Us</a>
+    </div>
+    <div class="logo">
+      <img src="newlogo.png" alt="Auraaq Logo" class="logo-img" />
+    </div>
+    <div class="nav-right">
+      <a href="#bookclub" class="btn">Book Club</a>
+      <a href="#contact" class="btn">Contact</a>
+      <div class="user-icon" onclick="openLoginModal()">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+        </svg>
       </div>
-      <div class="form-group">
-        <label>Password:</label>
-        <input type="password" id="dropdownPassword" placeholder="Enter your password">
-        <div id="dropdownPasswordError" class="password-error"></div>
-      </div>
-      <button class="login-btn-submit" onclick="validateLogin()">Login</button>
-      <div class="signup-link">
-        Don't have an account? <a href="signup.html">Sign up</a>
+    </div>
+  </nav>
+
+  <!-- Login Modal -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal">
+      <button class="close-btn" onclick="closeModal()">&times;</button>
+      <h2 class="form-title">Login</h2>
+      <form id="loginForm">
+        <div class="form-group">
+          <label>Email:</label>
+          <input type="email" class="form-input" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label>Password:</label>
+          <input type="password" class="form-input" placeholder="Enter your password" required>
+        </div>
+        <button type="submit" class="submit-btn login-btn">Login</button>
+      </form>
+      <div class="form-switch">
+        Don't have an account? <a href="#" onclick="switchToSignup()">Sign up</a>
       </div>
     </div>
   </div>
-</nav>
 
-
-<!-- Auth Modal -->
-<div id="authModal">
-  <div class="auth-box">
-    <button class="close-btn" onclick="closeAuthModal()">×</button>
-    
-    <!-- Login Form Only -->
-    <div id="loginForm">
-      <h3>Welcome Back</h3>
-      <p>Please sign in to your account</p>
-      <input type="email" id="modalEmail" placeholder="Email" required>
-      <input type="password" id="modalPassword" placeholder="Password" required>
-      <div id="modalPasswordError" class="password-error"></div>
-      <button type="submit" onclick="validateModalLogin()">Sign In</button>
+  <!-- Signup Modal -->
+  <div class="modal-overlay" id="signupModal">
+    <div class="modal">
+      <button class="close-btn" onclick="closeModal()">&times;</button>
+      <h2 class="form-title">Create Account</h2>
+      <p class="form-subtitle">Join Auraaq to explore more</p>
+      <form id="signupForm">
+        <div class="form-group">
+          <input type="text" class="form-input" placeholder="Full Name" required>
+        </div>
+        <div class="form-group">
+          <input type="email" class="form-input" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-input" placeholder="Password" required>
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-input" placeholder="Confirm Password" required>
+        </div>
+        <button type="submit" class="submit-btn">Sign Up</button>
+      </form>
+      <div class="form-switch">
+        Already have an account? <a href="#" onclick="switchToLogin()">Log in</a>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Home Section -->
-<section id="home" style="background-color: #ffffff; min-height: 100vh; width: 100%;">
-  <div class="home-content main-container">
-    <div class="home-text">
-      <h1>
-        From <span class="dynamic-tagline">Ideas to Reality</span>, Auraaq it.
-      </h1>
-      <p>We connect vendors and businesses through innovative solutions, simplifying commerce for everyone.</p>
-      <a href="#bookstore" class="btn">Explore Our Books</a>
+  <!-- Home Section -->
+  <section id="home" style="background-color: #ffffff; min-height: 100vh; width: 100%;">
+    <div class="home-content main-container">
+      <div class="home-text">
+        <h1>From <span class="dynamic-tagline"></span>, Auraaq it.</h1>
+        <p>We connect vendors and businesses through innovative solutions, simplifying commerce for everyone.</p>
+      </div>
+      <div class="home-image">
+        <img src="books.png" alt="Home Side Image">
+      </div>
     </div>
-    
-    <div class="home-image">
-      <img src="books.png" alt="Home Side Image">
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- Bookstore Section -->
+  <!-- Bookstore Section -->
 <section id="bookstore" style="background-color: #f9f9f9; padding: 60px 0; width: 100%;">
   <div class="main-container">
     <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 30px;">Our Bookstore</h2>
@@ -124,9 +126,17 @@
   </div>
 </section>
 
+
 <!-- About Section -->
 <section id="about" style="width: 100%; padding: 60px 0; background: #f2ece3;">
-  <div class="main-container">
+  <div class="main-container" style="display: flex; align-items: center; justify-content: center; gap: 40px;">
+    
+    <!-- Left Side - Heading -->
+    <div class="about-left">
+      <h2 class="highlight-title">ARE YOU A <span class="highlight">BUSINESS?</span></h2>
+    </div>
+
+    <!-- Right Side - Book -->
     <div class="book">
       <div class="pages">
         <div class="page" style="background-image: url('bookcover.png'); background-size: cover; background-position: center;"></div>
@@ -139,8 +149,10 @@
         <div class="page"></div>
       </div>
     </div>
+
   </div>
 </section>
+
 
 <!-- Book Club Section -->
 <section id="bookclub">
@@ -186,213 +198,8 @@
     <p>© 2025 Auraaq Technologies. All rights reserved.</p>
   </div>
 </footer>
-
-<script>
-// Password validation function
-function validatePassword(password) {
-  const minLength = 8;
-  const hasUppercase = /[A-Z]/.test(password);
-  const hasLowercase = /[a-z]/.test(password);
-  const hasNumbers = /\d/.test(password);
-  const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-  
-  const errors = [];
-  
-  if (password.length < minLength) {
-    errors.push(`At least ${minLength} characters`);
-  }
-  if (!hasUppercase) {
-    errors.push('At least one uppercase letter');
-  }
-  if (!hasLowercase) {
-    errors.push('At least one lowercase letter');
-  }
-  if (!hasNumbers) {
-    errors.push('At least one number');
-  }
-  if (!hasSpecialChar) {
-    errors.push('At least one special character (!@#$%^&*(),.?":{}|<>)');
-  }
-  
-  return {
-    isValid: errors.length === 0,
-    errors: errors
-  };
-}
-
-// Show password error
-function showPasswordError(elementId, errors) {
-  const errorElement = document.getElementById(elementId);
-  if (errors.length > 0) {
-    errorElement.innerHTML = `
-      <div style="color: #e74c3c; font-size: 12px; margin-top: 5px;">
-        <strong>Password must include:</strong><br>
-        ${errors.map(error => `• ${error}`).join('<br>')}
-      </div>
-    `;
-    errorElement.style.display = 'block';
-  } else {
-    errorElement.style.display = 'none';
-  }
-}
-
-// Validate dropdown login
-function validateLogin() {
-  const email = document.querySelector('#loginDropdown input[type="email"]').value;
-  const password = document.getElementById('dropdownPassword').value;
-  
-  if (!email) {
-    alert('Please enter your email');
-    return;
-  }
-  
-  if (!password) {
-    alert('Please enter your password');
-    return;
-  }
-  
-  const passwordValidation = validatePassword(password);
-  
-  if (!passwordValidation.isValid) {
-    showPasswordError('dropdownPasswordError', passwordValidation.errors);
-    return;
-  }
-  
-  // Clear any previous errors
-  showPasswordError('dropdownPasswordError', []);
-  
-  // Proceed with login (you can add your login logic here)
-  alert('Login successful!');
-  toggleLogin(); // Close dropdown
-}
-
-// Validate modal login
-function validateModalLogin() {
-  const email = document.getElementById('modalEmail').value;
-  const password = document.getElementById('modalPassword').value;
-  
-  if (!email) {
-    alert('Please enter your email');
-    return;
-  }
-  
-  if (!password) {
-    alert('Please enter your password');
-    return;
-  }
-  
-  const passwordValidation = validatePassword(password);
-  
-  if (!passwordValidation.isValid) {
-    showPasswordError('modalPasswordError', passwordValidation.errors);
-    return;
-  }
-  
-  // Clear any previous errors
-  showPasswordError('modalPasswordError', []);
-  
-  // Proceed with login (you can add your login logic here)
-  alert('Login successful!');
-  closeAuthModal(); // Close modal
-}
-
-// Real-time password validation for dropdown
-document.addEventListener('DOMContentLoaded', function() {
-  const dropdownPassword = document.getElementById('dropdownPassword');
-  if (dropdownPassword) {
-    dropdownPassword.addEventListener('input', function() {
-      const password = this.value;
-      if (password.length > 0) {
-        const validation = validatePassword(password);
-        showPasswordError('dropdownPasswordError', validation.errors);
-      } else {
-        showPasswordError('dropdownPasswordError', []);
-      }
-    });
-  }
-  
-  const modalPassword = document.getElementById('modalPassword');
-  if (modalPassword) {
-    modalPassword.addEventListener('input', function() {
-      const password = this.value;
-      if (password.length > 0) {
-        const validation = validatePassword(password);
-        showPasswordError('modalPasswordError', validation.errors);
-      } else {
-        showPasswordError('modalPasswordError', []);
-      }
-    });
-  }
-});
-
-// Toggle login dropdown
-function toggleLogin() {
-  const dropdown = document.getElementById('loginDropdown');
-  dropdown.classList.toggle('show');
-}
-
-// Close auth modal
-function closeAuthModal() {
-  const modal = document.getElementById('authModal');
-  modal.classList.remove('show');
-}
-
-// Book view function (placeholder)
-function openView(title, image, price, author, description) {
-  alert(`Book: ${title}\nPrice: ${price}\nAuthor: ${author}\nDescription: ${description}`);
-}
-
-// Close dropdown when clicking outside
-document.addEventListener('click', function(event) {
-  const dropdown = document.getElementById('loginDropdown');
-  const loginIcon = document.querySelector('.login-icon');
-  
-  if (!dropdown.contains(event.target) && !loginIcon.contains(event.target)) {
-    dropdown.classList.remove('show');
-  }
-});
-
-// Close modal when clicking outside
-document.addEventListener('click', function(event) {
-  const modal = document.getElementById('authModal');
-  const authBox = document.querySelector('.auth-box');
-  
-  if (modal.classList.contains('show') && !authBox.contains(event.target)) {
-    closeAuthModal();
-  }
-});
-
-// Flipbook functionality
-document.addEventListener('DOMContentLoaded', function() {
-  const pages = document.querySelectorAll('.page');
-  
-  pages.forEach((page, index) => {
-    page.addEventListener('click', function() {
-      if (index % 2 === 0) { // Only odd pages (right side) are clickable
-        page.classList.add('flipped');
-        if (pages[index + 1]) {
-          pages[index + 1].classList.add('flipped');
-        }
-      }
-    });
-  });
-});
-
-// Dynamic tagline animation (optional)
-const taglines = ['Ideas to Reality', 'Concept to Creation', 'Vision to Victory', 'Dream to Delivery'];
-let currentTagline = 0;
-
-function rotateTagline() {
-  const taglineElement = document.querySelector('.dynamic-tagline');
-  if (taglineElement) {
-    taglineElement.textContent = taglines[currentTagline];
-    currentTagline = (currentTagline + 1) % taglines.length;
-  }
-}
-
-// Rotate tagline every 3 seconds
-setInterval(rotateTagline, 3000);
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
+
+
